@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+void main()
+{
+  int i = 0;
+  int gracz = 0;
+  int komp = 1;
+  int go = 0;
+  int r = 0;
+  int k = 0;
+  int l = 0;
+  int X = 11;
+  int O = 11;
+  int win = 0;
+  char tab[3][3] = {
+                       {'1','2','3'},
+                       {'4','5','6'},
+                       {'7','8','9'}
+                     };
+
+   for( i = 0; i<9 && win==0; i++)
+   {
+
+    printf("\n\n");
+      printf(" %c | %c | %c\n", tab[0][0], tab[0][1], tab[0][2]);
+      printf("---+---+---\n");
+      printf(" %c | %c | %c\n", tab[1][0], tab[1][1], tab[1][2]);
+      printf("---+---+---\n");
+      printf(" %c | %c | %c\n", tab[2][0], tab[2][1], tab[2][2]);
+
+        if((tab[0][0] == tab[1][1] && tab[0][0] == tab[2][2])||
+           (tab[0][2] == tab[1][1] && tab[0][2] == tab[2][0]))
+            printf("Wygarłeś!", win = X);
+
+        else
+          for(l = 0; l <= 2; l ++){
+            if((tab[l][0] == tab[l][1] && tab[l][0] == tab[l][2])||
+               (tab[0][l] == tab[1][l] && tab[0][l] == tab[2][l]))
+              printf("Wygarłeś!", win = X);
+            }
+
+        do {
+          srand(time(NULL));
+          r=rand()%3;
+          k=rand()%3;
+        }  while(tab[r][k]=='X' || tab[r][k]=='O');
+          tab[r][k]= 'O';
+
+
+                  if((tab[0][0] == tab[1][1] && tab[0][0] == tab[2][2])||
+                     (tab[0][2] == tab[1][1] && tab[0][2] == tab[2][0])) {
+                      printf("Wygarłeś!", win = X);
+}
+                  else
+                    for(l = 0; l <= 2; l ++){
+                      if((tab[l][0] == tab[l][1] && tab[l][0] == tab[l][2])||
+                         (tab[0][l] == tab[1][l] && tab[0][l] == tab[2][l]))
+                        printf("Wygarłeś!", win = X);
+                      }
+
+     do {
+       printf("\nPodaj numer pola w którym chcesz postawić - X: ");
+       scanf("%d", &go);
+
+         r = --go/3;
+         k = go%3;
+     }  while(tab[r][k]=='X' || tab[r][k]=='O');
+       tab[r][k]= 'X';
+   }
+
+   printf("\n\n");
+   printf(" %c | %c | %c\n", tab[0][0], tab[0][1], tab[0][2]);
+   printf("---+---+---\n");
+   printf(" %c | %c | %c\n", tab[1][0], tab[1][1], tab[1][2]);
+   printf("---+---+---\n");
+   printf(" %c | %c | %c\n", tab[2][0], tab[2][1], tab[2][2]);
+
+   return 0;
