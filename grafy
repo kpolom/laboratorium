@@ -30,8 +30,6 @@ int t = 0;
                         if(z == 0) {
                             tab[w] = d;
                         }
-
-                        printf("%d\n", tab[w]);
                           c=c+1;
                         if(c == a ) {
                             w=w+1;
