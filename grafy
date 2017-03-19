@@ -79,7 +79,7 @@ http://we.pb.edu.pl/~jforenc/2012_2013_02/INF1_06Z.pdf
 int main() {
 
   int i = 0;
-  int j = 0;
+  int j = 1;
   int max, suma, N, M, x;
 
   printf("Podaj liczbe:");
@@ -87,35 +87,50 @@ int main() {
 M = N;
 int tab[N][M];
 
-while (i<N) {
+while (i<=N) {
   i=i+1;
-  while (j<M) {
+  while (j<=M) {
 
-    if ((N != 0) ? (N != 1) && (M != 0) ? (M != 1)) {
-      printf("Czy wierzcholek %d jest połączony z wierzchołkiem %d: (1-tak, 0-nie)\n", i , j);
-      scanf("%d", &x);
-
-    if (x == 1) {
-      j=j+1;
-      tab[i][j] = 1;
-      tab[j][i] = 1;
-            }
-    if (x == 0) {
-      j=j+1;
-      tab[i][j] = 0;
-      tab[j][i] = 0;
-            }
+      if ((i != 0) || (i != 1) && (j != 0) || (j != 1)) {
+            printf("Czy wierzcholek %d jest połączony z wierzchołkiem %d: (1-tak, 0-nie)\n", i , j);
+            scanf("%d", &x);
+          if (x == 1) {
+            tab[i][j] = 1;
+            tab[j][i] = 1;
+              j=j+1;
+                  }
+          if (x == 0) {
+            tab[i][j] = 0;
+            tab[j][i] = 0;
+              j=j+1;
+                  }
+          if (j > M) {
+            i=i+1;
+            j=1;
           }
-    if ((N == 0) ? (N == 1) && (M == 0) ? (M == 1)) {
-      if(j < M) {
-        j=j+1;
+          if (i > N) {
+            j = i;
+            }
+          if ((tab[i][j] == 1) || (tab[i][j]) == 0) {
+            if (j > M) {
+              i=i+1;
+              j=1;
+            }
+            if (i > N) {
+              j = i;
+          }
+        }
       }
-    }
-
-
-      }
+    // else if ((i == 0) || (i == 1) && (j == 0) || (j == 1)) {
+    //   if(j < M) {
+    //     j=j+1;
+    //     }
+    //   if(j == M) {
+    //     i=i+1;
+    //   }
+    //   }
   }
-
+}
 
 for (i=0; i<N; i++) {
     for (j=0; j<M; j++)
@@ -129,7 +144,7 @@ for (i=0; i<N; i++) {
  {
  suma = 0;
 for (i=0; i<N; i++)
- suma = suma + tab[i][j];
+ suma = suma + tab[j][i];
  printf("Suma kolumny %d = %d\n",j,suma);
  }
  printf("\n");
