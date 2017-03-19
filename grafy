@@ -64,7 +64,48 @@ int n = 0;
 
 ///
 
-
-
-
 http://we.pb.edu.pl/~jforenc/2012_2013_02/INF1_06Z.pdf
+
+///
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int i, j, max, suma, N, M;
+
+
+// #define scanf("%d", N)
+// #define scanf("%d", M)
+int main() {
+
+  printf("Podaj liczbe:");
+  scanf("%d", &N);
+M = N;
+int tab[N][M];
+
+srand(time(NULL));
+for (i=0; i<N; i++)
+for (j=0; j<M; j++)
+ tab[i][j] = rand() % 10;
+
+for (i=0; i<N; i++) {
+    for (j=0; j<M; j++)
+        printf("%3d",tab[i][j]);
+        printf("\n");
+            }
+
+      printf("\n");
+
+ for (j=0; j<M; j++)
+ {
+ suma = 0;
+for (i=0; i<N; i++)
+ suma = suma + tab[i][j];
+ printf("Suma kolumny %d = %d\n",j,suma);
+ }
+ printf("\n");
+
+ return 0;
+}
