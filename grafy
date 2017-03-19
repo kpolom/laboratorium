@@ -73,22 +73,49 @@ http://we.pb.edu.pl/~jforenc/2012_2013_02/INF1_06Z.pdf
 #include <stdlib.h>
 #include <time.h>
 
-int i, j, max, suma, N, M;
-
 
 // #define scanf("%d", N)
 // #define scanf("%d", M)
 int main() {
+
+  int i = 0;
+  int j = 0;
+  int max, suma, N, M, x;
 
   printf("Podaj liczbe:");
   scanf("%d", &N);
 M = N;
 int tab[N][M];
 
-srand(time(NULL));
-for (i=0; i<N; i++)
-for (j=0; j<M; j++)
- tab[i][j] = rand() % 10;
+while (i<N) {
+  i=i+1;
+  while (j<M) {
+
+    if ((N != 0) ? (N != 1) && (M != 0) ? (M != 1)) {
+      printf("Czy wierzcholek %d jest połączony z wierzchołkiem %d: (1-tak, 0-nie)\n", i , j);
+      scanf("%d", &x);
+
+    if (x == 1) {
+      j=j+1;
+      tab[i][j] = 1;
+      tab[j][i] = 1;
+            }
+    if (x == 0) {
+      j=j+1;
+      tab[i][j] = 0;
+      tab[j][i] = 0;
+            }
+          }
+    if ((N == 0) ? (N == 1) && (M == 0) ? (M == 1)) {
+      if(j < M) {
+        j=j+1;
+      }
+    }
+
+
+      }
+  }
+
 
 for (i=0; i<N; i++) {
     for (j=0; j<M; j++)
