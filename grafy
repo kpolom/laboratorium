@@ -14,19 +14,24 @@ int main() {
   printf("Podaj liczbe wierzcholkow grafu:");
   scanf("%d", &N);
 M = N;
-O = N;
 int tab[N][M];
 for (y=0; y<N; y++) {
     for (u=0; u<M; u++) {
-        tab[y][u] = 999;
+        tab[y][u] = 99999;
     }
 }
 while (i<=N) {
   while (j<=M) {
-      if (tab[i][j] == 999) {
-        if (j == i) {
-            j=j+1;
-                }
+
+    if (j == i) {
+        tab[i][j]=0;
+        j=j+1;
+            if(j > M) {
+                i=i+1;
+                j=0;
+                    }
+}
+      if (tab[i][j] == 99999) {
             printf("Czy wierzcholek %d jest polaczony z wierzcholkiem %d: (1-tak, 0-nie)\n", i+1 , j+1);
             scanf("%d", &x);
           if ((x != 0) && (x != 1)) {
@@ -81,7 +86,3 @@ for (i=0; i<N; i++) {
     printf(" \nStopien grafu: %d\n",max);
  return 0;
 }
-
-///
-
-http://we.pb.edu.pl/~jforenc/2012_2013_02/INF1_06Z.pdf
