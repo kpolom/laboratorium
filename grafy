@@ -130,40 +130,39 @@ for (i=0; i<N; i++) {
 
 ///////
 
+
 #include <iostream>
 #include <stack>
 #include <vector>
 using namespace std;
 
-bool visited[10000];   //deklarujemy tablice odwiedzin -> zaznaczamy wszystkie wierzcholki jako nieodwiedzone
+bool visited[10000];
 vector <int> V[10000];
 
 
 int main()
 {
     int t,euler,n,m,i,v1,v2;
-    int suma=0;
     int w=0;
     bool spojny;
     stack<int>S;
 
-    cout << "WprowadŸ ilosc wierzcholkow i krawêdzi po spacji.\n";
+    cout << "Wprowadz ilosc wierzcholkow i krawedzi po spacji.\n";
     cin >> n >> m;
     int tab[n];
+    int tab2[n];
     for(i = 0; i < n; i++) {
-            w=w+1;
     cout << "Podaj ilosc krawedzi wierzcholka " << w << ": ";
+    w=w+1;
     cin >> tab[i];
     }
     cout << "Podaj wierzcholek oraz wierzcholek polaczony z nim po spacji.\n";
-    m=m*2;
-
     for(i = 0; i < m; i++)
     {
         cin >> v1 >> v2;
         V[v1].push_back(v2);
+        V[v2].push_back(v1);
     }
-
     for(i = 0; i < n; i++)
     {
         cout<<"\n"<<i<<" jest poloczony z: ";
@@ -172,27 +171,23 @@ int main()
     }
 
     cout << "\n";
-
 //  DFS
     S.push(0);
     while(!S.empty())
     {
-        v1 = S.top();            // Pobieramy wierzcho³ek ze szczytu stosu
-        S.pop();                       // Usuwamy pobrany wierzcho³ek ze szczytu stosu
-        if(!visited[v1])           // Sprawdzamy, czy wierzcho³ek by³ odwiedzony
+        v1 = S.top();
+        S.pop();
+        if(!visited[v1])
         {
-            // jezeli nie to ¡
-            visited[v1] = true;       // Odwiedzamy go i na stosie umieszczamy sasiadow
-            for(int i=0 ; i < V[v1].size() ; i++)   //V[v1].size() - ilosc wierzcholkow na liscie wektora v1
+            visited[v1] = true;
+            for(int i=0 ; i < V[v1].size() ; i++)
                 if(!visited[V[v1][i]])
                 {
                     S.push(V[v1][i]);
                 }
         }
     }
-    cout << "\n";
-
-    cout << "1-odwiedzony / 0-nie dalo sie odwiedzic\n";
+    cout << "\n1-odwiedzony / 0-nie dalo sie odwiedzic\n";
     for(i = 0; i < n; i++)
         cout<<visited[i]<<", ";
 
@@ -203,11 +198,10 @@ int main()
             spojny = false;
             break;
         }
-
     cout << endl;
     if(spojny) cout << "\nGraf spojny.\n";
     else cout << "\nGraf niespojny.\n";
-
+    //euler
     if(m % 2 == 0){
         euler=1;
     }
@@ -231,4 +225,3 @@ int main()
     }
         cout << "\nStopien grafu: " << t << "\n";
 }
-
